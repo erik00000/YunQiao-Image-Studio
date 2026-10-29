@@ -4,23 +4,22 @@ YunQiao Image Studio（云桥图像工坊 / 云桥Pro）是一款开源的 AI �
 
 项目支持 OpenAI 兼容的 `gpt-image-2`、`gpt-image-2.5-flare`、`gpt-image-2.5-sunburst` 与 Gemini 图像模型：两类图像接口都走 `https://api.yunqiao.me` 服务，可保存多组 Key、获取模型列表，并在顶部模型选择器切换当前生图模型。
 
-## 最新版本
+## 项目入口
 
-当前发布版本：`v0.1.20`
+- 主页：[www.yunqiao.me](https://www.yunqiao.me/)
+- 固定 API 地址：[api.yunqiao.me](https://api.yunqiao.me/)
+- 源码仓库：[erik00000/YunQiao-Image-Studio](https://github.com/erik00000/YunQiao-Image-Studio)
+- 客户端发布页：[GitHub Releases](https://github.com/erik00000/YunQiao-Image-Studio/releases)
 
-GitHub Release 下载页：
+主页用于访问网站，API 地址用于模型列表、连接测试、文生图、图生图和 AI 修图请求。客户端不提供自定义 API 地址入口；已有配置中的旧地址在读取时会统一使用固定地址。
 
-```text
-https://github.com/jxb412/YunQiao-Image-Studio/releases/tag/v0.1.20
-```
+## 版本与下载
 
-客户端文件：
+当前源码版本：`0.1.20`。本仓库已包含云桥域名修改，尚未发布包含这些修改的客户端安装包。可先按下方“快速开始”运行源码，或按 Windows/macOS 构建说明自行打包。
 
-- Windows x64 便携版：`YunQiao-Image-Studio-0.1.20-win-x64-portable.exe`
-- macOS Intel x64：`YunQiao-Image-Studio-0.1.20-mac-x64.dmg`
-- macOS Apple Silicon arm64：`YunQiao-Image-Studio-0.1.20-mac-arm64.dmg`
+后续安装包以本仓库的 [GitHub Releases](https://github.com/erik00000/YunQiao-Image-Studio/releases) 为准。原项目的历史安装包不包含本仓库此次域名修改。
 
-Windows 版本下载后双击即可运行，不需要安装 Node.js、npm 或 Electron。当前开源构建未购买代码签名证书，Windows 首次运行可能出现 SmartScreen “Windows 已保护你的电脑 / 发布者未知”提示，处理方式见本文的 Windows 首次运行说明。macOS 版本当前未做 Apple Developer ID 签名和公证，首次打开方式见本文的 macOS 说明。
+Windows 便携版打包后可直接运行，无需安装 Node.js 或 npm。当前构建未配置 Windows 商业代码签名和 macOS Developer ID 公证，首次运行说明见下文。
 
 ## 核心功能
 
@@ -31,23 +30,30 @@ Windows 版本下载后双击即可运行，不需要安装 Node.js、npm 或 El
 - 行业模板库：内置电商、短剧、自媒体、漫画动漫、人物图像、二次元头像、潮流社交、虚拟IP、游戏美术、餐饮、品牌广告等模板。
 - 作品素材库：保存生成结果、提示词、参数快照、本地路径和云端 URL。
 - 云端存储：支持 OSS、COS、OBS、七牛、MinIO、FTP、SFTP。
-- 多模型接口：支持 www.yunqiao.me / `gpt-image-2`、`gpt-image-2.5-flare`、`gpt-image-2.5-sunburst` 与 Gemini 图像模型，可保存多组 Key 并选择当前模型。
+- 多模型接口：通过固定 API 服务支持 `gpt-image-2`、`gpt-image-2.5-flare`、`gpt-image-2.5-sunburst` 与 Gemini 图像模型，可保存多组 Key 并选择当前模型。
 - 程序代理：默认勾选跟随 Windows/macOS 系统代理，取消后可选择单独 HTTP/HTTPS 代理或直连。
 - 本机安全存储：API Key 和云存储密钥只保存在本机安全存储中。
 - 跨平台配置：同一套代码支持 Windows 和 macOS 构建。
 
-## v0.1.20 更新重点
+## 本仓库修改
+
+- GPT 与 Gemini API 固定使用 `https://api.yunqiao.me/`，保留服务地址锁定逻辑。
+- 顶部网站按钮固定打开 [www.yunqiao.me](https://www.yunqiao.me/)。
+- 更新界面中的服务名称、配置示例和使用文档。
+- 增加固定地址回归测试，覆盖旧配置读取、保存、模型列表、连接测试、生成、编辑和代理测试。
+
+## 上游 v0.1.20 更新重点
 
 - 新增 `gpt-image-2.5-flare` 和 `gpt-image-2.5-sunburst` 模型支持。
 - 设置页、顶部模型选择器、模型列表获取和旧配置兼容逻辑已同步支持两个新模型。
 - 文生图、图生图、局部重绘、AI 修图和批量生产会透传当前选择的 GPT 图像模型。
 - 完善模型 API 规范、用户手册、产品文档和核心请求测试。
 
-## v0.1.19 更新重点
+## 上游 v0.1.19 更新重点
 
 - 新增 Gemini 图像模型接入，支持 `gemini-3.1-flash-image` 文生图、图生图和 AI 修图。
 - API 设置升级为多 Key 多模型配置，可获取模型列表，并在顶部模型选择器切换当前生图模型。
-- GPT 与 Gemini 图像接口统一使用 https://api.yunqiao.me 服务；客户端固定服务地址，不提供自定义 API URL。
+- GPT 与 Gemini 图像接口使用固定服务地址，不提供自定义 API URL；本仓库当前使用的地址见“项目入口”。
 - GPT 与 Gemini 使用不同参数区：GPT 保留尺寸、质量、格式和背景；Gemini 使用输出大小与画幅比例。
 - Gemini 返回图片会读取真实 MIME 类型，结果面板可显示返回类型、图片类型、尺寸、文件大小和耗时。
 - 批量生产工坊跟随当前模型，支持 GPT/Gemini 文生图与图生图任务，并按模型显示尺寸规则。
@@ -66,10 +72,17 @@ Windows 版本下载后双击即可运行，不需要安装 Node.js、npm 或 El
 
 ## 快速开始
 
-安装依赖：
+先安装 Node.js 22 和 Git，然后获取源码：
 
 ```bash
-npm install
+git clone https://github.com/erik00000/YunQiao-Image-Studio.git
+cd YunQiao-Image-Studio
+```
+
+安装锁定版本的依赖：
+
+```bash
+npm ci
 ```
 
 启动开发环境：
@@ -89,16 +102,20 @@ npm run build
 
 ## API 设置
 
-在应用内打开 `API与云端存储设置` 页面，填写：
+在应用内打开 `API与云端存储设置` 页面：
 
-- 固定 API 地址：`https://api.yunqiao.me/`，客户端不提供自定义 API URL 输入。
-- 主页：`https://www.yunqiao.me/`，顶部网站按钮打开此地址。
-- GPT 图像服务：使用 `https://api.yunqiao.me`，请先到 `www.yunqiao.me` 购买套餐并生成 GPT Key。
-- Gemini 图像服务：同样使用 `https://api.yunqiao.me`，请保存 Gemini Key，点击 `获取模型` 后选择 `gemini-3.1-flash-image` 等图像模型。
-- 多 Key 管理：可保存多组客户 Key，每组 Key 绑定对应模型；顶部工具栏可选择当前生图模型。
+1. 选择 `GPT 图像 / 云桥` 或 `Gemini 图像` 服务类型，填写配置名称。
+2. 填写云桥服务对应的 API Key，可通过 [主页](https://www.yunqiao.me/) 访问服务网站。
+3. 点击 `获取模型`，选择可用图像模型，也可填写手动模型名。
+4. 点击 `保存模型配置`，再在顶部模型选择器选中需要使用的配置和模型。
+5. 点击 `测试当前模型`，查看 HTTP 状态码、耗时和返回摘要。
+
+API 地址固定为 `https://api.yunqiao.me/`，无需填写，也不能在界面中修改。GPT 使用 `/v1/models`、`/v1/images/generations` 和 `/v1/images/edits`；Gemini 使用 `/v1beta/models` 及对应的生成接口。
+
+- 多 Key 管理：可保存多组 Key，每组 Key 绑定服务类型和模型；密钥使用本机安全存储。
+- 模型可用性：客户端内置模型选项，实际可用模型与权限以服务端返回为准。
 - 请求超时时间：默认 300 秒，最高 600 秒。
-- 程序代理：默认勾选跟随系统代理；取消后可选择单独 HTTP/HTTPS 代理或直连；保存后会用于 API、生图、修图、更新检查和远程图片下载。
-- 测试 API：可在设置页直接测试当前模型配置的连通性，并查看状态码、耗时和返回摘要。
+- 程序代理：默认跟随系统代理；也可选择单独 HTTP/HTTPS 代理或直连。保存后用于 API、生图、修图、更新检查和远程图片下载。
 
 ## 图片生成说明
 
@@ -133,7 +150,7 @@ AI 修图工具箱支持局部遮罩：可在图片上绘制需要修改的区�
 - 新增模板已按 GPT 图像模型尺寸规则检查，默认不超过 2K。
 - 人物、二次元和虚拟 IP 模板默认加入肖像、版权、未成年人和低俗内容规避提示。
 - 作品素材库支持搜索、项目筛选、云端状态筛选、预览、继续编辑、修图和打开本地文件位置。
-- 顶部工具栏支持手动检查新版本，方便下载对应系统的新版客户端。
+- 顶部工具栏保留手动检查更新功能。当前更新源仍沿用上游配置；本仓库客户端请以“版本与下载”中的发布页为准。
 
 ## GitHub Release 自动构建
 
@@ -147,7 +164,7 @@ AI 修图工具箱支持局部遮罩：可在图片上绘制需要修改的区�
 
 ## Windows 首次运行说明
 
-当前 Release 的 Windows 便携版未做商业代码签名，因此 Microsoft Defender SmartScreen 可能提示“Windows 已保护你的电脑”，并显示：
+当前构建配置生成的 Windows 便携版未做商业代码签名，因此 Microsoft Defender SmartScreen 可能提示“Windows 已保护你的电脑”，并显示：
 
 ```text
 发布者：发布者未知
@@ -275,7 +292,7 @@ build/           应用图标资源
 
 ## 开源协作
 
-欢迎提交 Issue 和 Pull Request。适合优先完善的方向：
+欢迎在[本仓库](https://github.com/erik00000/YunQiao-Image-Studio)提交 Issue 和 Pull Request。项目基于 [jxb412/YunQiao-Image-Studio](https://github.com/jxb412/YunQiao-Image-Studio) 继续开发。适合优先完善的方向：
 
 - 更多行业模板和提示词变量。
 - 更完整的签名、公证和安装包分发流程。
