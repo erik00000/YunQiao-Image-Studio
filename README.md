@@ -15,9 +15,15 @@ YunQiao Image Studio（云桥图像工坊 / 云桥Pro）是一款开源的 AI �
 
 ## 版本与下载
 
-当前源码版本：`0.1.21`。本仓库已包含云桥域名修改，尚未发布包含这些修改的客户端安装包。可先按下方“快速开始”运行源码，或按 Windows/macOS 构建说明自行打包。
+当前发布版本：[v0.1.21](https://github.com/erik00000/YunQiao-Image-Studio/releases/tag/v0.1.21)，已包含固定 API 和主页修改。
 
-后续安装包以本仓库的 [GitHub Releases](https://github.com/erik00000/YunQiao-Image-Studio/releases) 为准。原项目的历史安装包不包含本仓库此次域名修改。
+| 文件 | 下载 | 用途 |
+| --- | --- | --- |
+| Windows x64 安装版 | [下载 setup.exe](https://github.com/erik00000/YunQiao-Image-Studio/releases/download/v0.1.21/YunQiao-Image-Studio-0.1.21-win-x64-setup.exe) | 可选择安装目录、创建快捷方式 |
+| Windows x64 免安装版 | [下载 portable.exe](https://github.com/erik00000/YunQiao-Image-Studio/releases/download/v0.1.21/YunQiao-Image-Studio-0.1.21-win-x64-portable.exe) | 下载后直接运行 |
+| SHA-256 校验文件 | [下载 SHA256SUMS.txt](https://github.com/erik00000/YunQiao-Image-Studio/releases/download/v0.1.21/SHA256SUMS.txt) | 核对上述安装包完整性 |
+
+本次仅发布 Windows x64 客户端，macOS 用户可按下方构建说明自行打包。原项目的历史安装包不包含本仓库此次域名修改。
 
 Windows 便携版打包后可直接运行，无需安装 Node.js 或 npm。当前构建未配置 Windows 商业代码签名和 macOS Developer ID 公证，首次运行说明见下文。
 
