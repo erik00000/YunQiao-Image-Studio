@@ -20,7 +20,7 @@ import { DEFAULT_OPENAI_MODEL, OPENAI_IMAGE_MODELS } from "../shared/imageModels
 
 let mainWindow: BrowserWindow | null = null;
 let encryptedApiKey: Buffer | null = null;
-const FIXED_API_BASE_URL = "https://api.quya.org";
+const FIXED_API_BASE_URL = "https://api.yunqiao.me";
 const GEMINI_API_BASE_URL = `${FIXED_API_BASE_URL}/v1beta`;
 const DEFAULT_GEMINI_MODEL = "gemini-3.1-flash-image";
 const FALLBACK_GEMINI_IMAGE_MODELS = ["gemini-3.1-flash-image", "gemini-3-pro-image-preview", "gemini-2.5-flash-image"];
@@ -128,7 +128,7 @@ function defaultApiProfile(): PersistedApiProfile {
   const now = Date.now();
   return {
     id: "quya-openai-default",
-    name: "quya GPT 图像",
+    name: "云桥 GPT 图像",
     provider: "openai",
     apiBaseUrl: FIXED_API_BASE_URL,
     models: [...OPENAI_IMAGE_MODELS],
@@ -154,7 +154,7 @@ function normalizeApiProfile(value: unknown, fallbackIndex = 0): PersistedApiPro
   const now = Date.now();
   return {
     id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `api-profile-${now}-${fallbackIndex}`,
-    name: typeof source.name === "string" && source.name.trim() ? source.name.trim() : provider === "gemini" ? "Gemini 图像" : "quya GPT 图像",
+    name: typeof source.name === "string" && source.name.trim() ? source.name.trim() : provider === "gemini" ? "Gemini 图像" : "云桥 GPT 图像",
     provider,
     apiBaseUrl: defaultBaseUrlForProvider(provider),
     models: models.includes(selectedModel) ? models : [selectedModel, ...models],
@@ -1274,7 +1274,7 @@ ipcMain.handle("settings:save-api-profile", async (_event, payload: {
   const profile = normalizeApiProfile({
     ...existing,
     id: existing?.id ?? `api-profile-${now}`,
-    name: payload.name?.trim() || existing?.name || (provider === "gemini" ? "Gemini 图像" : "quya GPT 图像"),
+    name: payload.name?.trim() || existing?.name || (provider === "gemini" ? "Gemini 图像" : "云桥 GPT 图像"),
     provider,
     selectedModel,
     models,

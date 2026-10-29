@@ -410,7 +410,7 @@ function makeApiProfileDraft(patch: Partial<ApiProfileDraft> = {}): ApiProfileDr
   const selectedModel = patch.selectedModel ?? defaultModel;
   return {
     id: patch.id,
-    name: patch.name ?? (provider === "gemini" ? "Gemini 图像 Key" : "quya GPT 图像 Key"),
+    name: patch.name ?? (provider === "gemini" ? "Gemini 图像 Key" : "云桥 GPT 图像 Key"),
     provider,
     apiKey: "",
     selectedModel,
@@ -1378,7 +1378,7 @@ function App() {
   const [variableValues, setVariableValues] = useState<VariableValues>(() => makeVariableValues(templateLibrary[0]));
   const [globalQuery, setGlobalQuery] = useState("");
   const [apiKeySaved, setApiKeySaved] = useState(false);
-  const [apiBaseUrl, setApiBaseUrl] = useState("https://api.quya.org");
+  const [apiBaseUrl, setApiBaseUrl] = useState("https://api.yunqiao.me");
   const [apiProfiles, setApiProfiles] = useState<ApiProfile[]>([]);
   const [apiProfileDraft, setApiProfileDraft] = useState<ApiProfileDraft>(() => makeApiProfileDraft());
   const [activeModelKey, setActiveModelKey] = useState("");
@@ -1521,11 +1521,11 @@ function App() {
 
   function openOfficialSite() {
     if (!bridge?.openExternal) {
-      notify("请访问 quya.org 购买套餐并生成 API Key", "info");
+      notify("请访问 www.yunqiao.me 购买套餐并生成 API Key", "info");
       return;
     }
-    void bridge.openExternal("https://quya.org").catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : "无法打开 quya.org";
+    void bridge.openExternal("https://www.yunqiao.me/").catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : "无法打开 www.yunqiao.me";
       notify(message, "warning");
     });
   }
@@ -2790,7 +2790,7 @@ function makeAssetFromResult(result: GenerationResult, params: GenerationParams)
           </div>
           <button className="siteButton" onClick={openOfficialSite}>
             <ExternalLink size={15} />
-            quya.org
+            www.yunqiao.me
           </button>
           <button className="quotaButton" onClick={() => setActive("API与云端存储设置")}>
             <Gauge size={16} />
@@ -3822,7 +3822,7 @@ function ResultInfoPanel({ result, onCopy }: { result?: GenerationResult; onCopy
         <InfoMetric label="状态" value={result.error ? "失败" : result.status} tone={result.error ? "warning" : "success"} />
         <InfoMetric label="来源" value={result.source ?? "未记录"} />
         <InfoMetric label="模型" value={result.requestModel ?? "未记录"} />
-        <InfoMetric label="服务" value={result.requestProvider === "gemini" ? "Gemini" : result.requestProvider === "openai" ? "GPT/quya" : "未记录"} />
+        <InfoMetric label="服务" value={result.requestProvider === "gemini" ? "Gemini" : result.requestProvider === "openai" ? "GPT/云桥" : "未记录"} />
         <InfoMetric label="耗时" value={formatDuration(result.durationMs)} />
         <InfoMetric label="完成时间" value={formatTime(result.completedAt)} />
         <InfoMetric label="返回类型" value={result.responseType ?? "未记录"} />
@@ -4409,7 +4409,7 @@ function SettingsPage({
         <div className="panelHeader">
           <div>
             <h2>API 设置</h2>
-            <p>固定服务地址为 quya.org，不提供自定义 API URL。可保存多组 Key、获取模型列表，并在顶部选择当前生图模型；Key 只保存在本机安全存储中。</p>
+            <p>API 固定为 https://api.yunqiao.me/，不提供自定义 API URL。可保存多组 Key、获取模型列表，并在顶部选择当前生图模型；Key 只保存在本机安全存储中。</p>
           </div>
           <Database size={18} />
         </div>
@@ -4417,7 +4417,7 @@ function SettingsPage({
           <label>
             服务类型
             <select value={apiProfileDraft.provider} onChange={(event) => onApiProfileDraftChange({ provider: event.target.value as ImageProvider })}>
-              <option value="openai">GPT 图像 / quya.org</option>
+              <option value="openai">GPT 图像 / 云桥</option>
               <option value="gemini">Gemini 图像</option>
             </select>
           </label>
@@ -4466,7 +4466,7 @@ function SettingsPage({
             <div className={`apiProfileRow ${activeModel?.profileId === profile.id ? "active" : ""}`} key={profile.id}>
               <div>
                 <strong>{profile.name}</strong>
-                <span>{profile.provider === "gemini" ? "Gemini" : "GPT/quya"} · {profile.selectedModel} · {profile.hasKey ? "Key 已保存" : "未保存 Key"}</span>
+                <span>{profile.provider === "gemini" ? "Gemini" : "GPT/云桥"} · {profile.selectedModel} · {profile.hasKey ? "Key 已保存" : "未保存 Key"}</span>
               </div>
               <div className="buttonRow compactButtons">
                 <button className="secondaryButton" onClick={() => onEditApiProfile(profile)}>编辑</button>

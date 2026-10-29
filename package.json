@@ -6,7 +6,7 @@
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
-    "test": "tsx scripts/test-core.mjs",
+    "test": "tsx scripts/test-core.mjs && tsx scripts/test-api-settings.cjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "build": "electron-vite build",
