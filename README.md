@@ -15,7 +15,7 @@ YunQiao Image Studio（云桥图像工坊 / 云桥Pro）是一款开源的 AI �
 
 ## 版本与下载
 
-当前源码版本：`0.1.20`。本仓库已包含云桥域名修改，尚未发布包含这些修改的客户端安装包。可先按下方“快速开始”运行源码，或按 Windows/macOS 构建说明自行打包。
+当前源码版本：`0.1.21`。本仓库已包含云桥域名修改，尚未发布包含这些修改的客户端安装包。可先按下方“快速开始”运行源码，或按 Windows/macOS 构建说明自行打包。
 
 后续安装包以本仓库的 [GitHub Releases](https://github.com/erik00000/YunQiao-Image-Studio/releases) 为准。原项目的历史安装包不包含本仓库此次域名修改。
 
@@ -180,6 +180,14 @@ AI 修图工具箱支持局部遮罩：可在图片上绘制需要修改的区�
 
 ## Windows 构建
 
+生成 Windows x64 安装版（可选择安装目录）：
+
+```bash
+npm run dist:win -- --x64 --publish never
+```
+
+安装包文件名：`YunQiao-Image-Studio-0.1.21-win-x64-setup.exe`。
+
 生成便携版：
 
 ```bat
@@ -191,6 +199,8 @@ scripts\build-win-portable.cmd
 ```bash
 npm run dist:win-portable
 ```
+
+便携版文件名：`YunQiao-Image-Studio-0.1.21-win-x64-portable.exe`。安装版与便携版使用不同文件名，构建时不会互相覆盖。
 
 产物默认输出到：
 
