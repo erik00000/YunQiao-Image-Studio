@@ -301,6 +301,8 @@ build/           应用图标资源
 ## 安全说明
 
 - 不要把真实 API Key、云存储 AccessKey、SecretKey 提交到 Git。
+- 在同一台电脑运行安装版或免安装版时，程序会读取已有的本地用户配置。看到“Key 已保存”不代表安装包包含密钥；Windows 默认数据目录为 `%APPDATA%\yunqiao-pro`。
+- API Key 使用 Electron `safeStorage` 加密保存于用户数据目录，运行时生成的 `secrets.json`、`api-profile-secrets.json` 和 `storage-secrets.json` 已加入 Git 忽略规则。
 - `.env`、本地配置、构建产物和依赖目录已通过 `.gitignore` 排除。
 - `config/api.example.json` 只保留示例配置。
 - 生成的图片和云端 URL 由用户自行管理，请注意版权、隐私和平台合规要求。

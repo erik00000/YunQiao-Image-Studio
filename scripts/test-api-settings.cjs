@@ -38,6 +38,9 @@ async function main() {
     require("../src/main/index.ts");
     Module._load = originalLoad;
     const call = (name, payload) => handlers.get(name)(undefined, payload);
+    const fresh = await call("app:get-settings");
+    assert.equal(fresh.hasApiKey, false);
+    assert.ok(fresh.apiProfiles.every((profile) => profile.hasKey === false));
     // An old installation must migrate away from both original and custom addresses.
     await fs.writeFile(path.join(directory, "settings.json"), JSON.stringify({
       apiBaseUrl: "https://api.quya.org", proxyMode: "off", autoCheckUpdates: false,

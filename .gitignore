@@ -17,3 +17,8 @@ temp/
 Thumbs.db
 st2/
 st3/
+
+# Local runtime credentials must never be committed, even if copied into the project.
+secrets.json
+api-profile-secrets.json
+storage-secrets.json
